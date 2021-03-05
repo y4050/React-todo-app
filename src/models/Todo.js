@@ -9,6 +9,11 @@ class TodoModel {
         let request = axios.get(endPoint);
         return request;
     }
+    static create = (todo) => {
+        // post requrest sending the todo object as the second argument
+        let request = axios.post(endPoint, todo);
+        return request;
+    }
     // methods to update delete etc.
 }
 
