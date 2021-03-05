@@ -1,11 +1,23 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
+import TodoModel from '../models/Todo';
+import Todos from '../components/Todos';
 
-const TodosContainer = () => {
+export default function TodosContainer(){
+    const [todos, setTodos] = useState([]);
+
+    // put empty array to run once
+    useEffect(()=> {
+        const fetchData = async() => {
+            const res = await TodoModel.all();
+            console.log(res)
+            setTodos(res.data)
+        }
+        fetchData();
+    }, []);
     return (
-        <div>
+        <div className='todosContainer'>
+            <Todos todos={todos} />
             <h1>TodosContainer</h1>
         </div>
     );
 }
-
-export default TodosContainer;

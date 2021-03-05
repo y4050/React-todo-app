@@ -9,7 +9,6 @@ function App() {
     <div className="container">
       <Header />
       {routes}
-      <h1>Hello</h1>
     </div>
   );
 }
