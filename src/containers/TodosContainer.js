@@ -26,10 +26,22 @@ export default function TodosContainer(){
         setTodos([...todos, anotherTodo.data]);
     }
 
+    const deleteTodo = async(todo) => {
+        console.log(todo)
+        // talk to database
+        const deletedTodo = await TodoModel.delete(todo)
+        console.log(deletedTodo)
+        let tempTodos = [...todos].filter((eachTodo) => {
+            return eachTodo._id !== deletedTodo.data._id
+        });
+        setTodos(tempTodos)
+        // will have to update state
+    }
+
     return (
         <div className='todosContainer'>
             <CreateTodoForm createTodo={createTodo}/>
-            <Todos todos={todos} />
+            <Todos todos={todos} deleteTodo={deleteTodo} />
             <h1>TodosContainer</h1>
         </div>
     );
